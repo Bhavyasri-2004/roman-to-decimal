@@ -1,0 +1,18 @@
+class Solution {
+  public:
+    int romanToDecimal(string &str) {
+        int ans = 0;
+        int local_sum = 0;
+        int n = str.size();
+        map<char, int> roman = { {'I', 1}, {'V', 5}, {'X', 10}, {'L', 50}, {'C', 100}, {'D', 500}, {'M', 1000} };
+        for(int i=0; i<n; i++){
+            if(roman[str[i]] < roman[str[i+1]])
+                local_sum = roman[str[i+1]] - roman[str[i++]];
+            else
+                local_sum = roman[str[i]];
+            
+            ans+= local_sum;
+        }
+        return ans;
+    }
+};
